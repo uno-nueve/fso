@@ -1,0 +1,19 @@
+sequenceDiagram
+    user->>browser: form input
+    activate browser
+    user->>browser: submit form
+
+    Note right of user: The user fills the form's textfield and submits a new note by clicking the "Save" button
+
+    Note right of browser: Form data is fetched and added to the notes list preventing new GET requests
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    deactivate browser
+    activate server
+
+    Note right of browser: Data is sent to the server as a JSON string
+
+    server-->>browser: 201 status code
+    deactivate server
+
+    Note right of browser: The server confirms the creation of a new resource. No new HTTP requests needed
